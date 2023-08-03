@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8179ba6cff3ecf468a31dcfd6e52cfb, type: 3}
+  m_Name: CardData
+  m_EditorClassIdentifier: 
+  digitCards:
+  - {fileID: 6488514445181034965, guid: 5a5d61568c749624288e12c50512d7ed, type: 3}
+  - {fileID: 6488514445181034965, guid: c6814d663b609da478b9e58870cbb7ca, type: 3}
+  - {fileID: -6608794300669302715, guid: 3da02ad4585d8974483f9a32cf9a6390, type: 3}
+  - {fileID: -722350525461960460, guid: 2a9566c22205b8843bd8e8aef1e9f525, type: 3}
+  - {fileID: -722350525461960460, guid: d75c33764142dc64198173382852c5a4, type: 3}
+  - {fileID: -722350525461960460, guid: d2cf8a4ba60f0244c93b368b1a88daf1, type: 3}
+  - {fileID: 3895980693119565168, guid: 1fe1e4a276b72314a94c1a67dfb61210, type: 3}
+  - {fileID: -722350525461960460, guid: 4a6ff012ad234d4488aadd509f206ed0, type: 3}
+  - {fileID: -722350525461960460, guid: 59dfe3aa9dc1a8e4aace449afead69aa, type: 3}
+  - {fileID: -722350525461960460, guid: dc396d686be55b842aea0d042a861a0b, type: 3}
+  animalCards: []
