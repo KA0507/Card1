@@ -15,5 +15,5 @@ public class Constant : MonoBehaviour
     public const string TAG_CHARACTER = "Character";
 
 
-
+    public const string LEVEL = "Level ";
 }

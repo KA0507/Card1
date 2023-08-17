@@ -46,10 +46,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da6492969c007e94db186709d6316ae4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolType: 90
+  poolType: 900
   numberCharacter: 2
   isPlayer: 0
   isBot: 0
+  uiGamePlay: {fileID: 0}
+  renderer: {fileID: 4479612478136366790}
+  materialDefault: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!135 &7192881122605551299
 SphereCollider:
   m_ObjectHideFlags: 0

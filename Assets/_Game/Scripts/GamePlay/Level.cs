@@ -7,31 +7,29 @@ public class Level : MonoBehaviour
     public List<Character> bots = new List<Character>();
     public List<Character> players = new List<Character>();
 
-    public int nPlayer;
-    public int nBot;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     public void OnInit()
     {
-        Ray ray = Camera.main.ScreenPointToRay(new Vector3(540, 1300, 0));
+        Ray ray = Camera.main.ScreenPointToRay(new Vector3(540, 1400, 0));
         Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, LevelManager.Ins.groundLayer);
         LevelManager.Ins.botPosition.OnInit(hit.point);
-        ray = Camera.main.ScreenPointToRay(new Vector3(540, 600, 0));
+        ray = Camera.main.ScreenPointToRay(new Vector3(540, 750, 0));
         Physics.Raycast(ray, out hit, Mathf.Infinity, LevelManager.Ins.groundLayer);
         LevelManager.Ins.playerPosition.OnInit(hit.point);
 
-        for (int i = 0; i < nPlayer; i++)
+        for (int i = 0; i < Data.Ins.levelData.levelPlayers[LevelManager.Ins.indexLevel].players.Count; i++)
         {
-            LevelManager.Ins.CreatePlayer();
+            for (int j = 0; j < Data.Ins.levelData.levelPlayers[LevelManager.Ins.indexLevel].players[i].numberPlayer; j++)
+            {
+                LevelManager.Ins.CreatePlayer(Data.Ins.levelData.levelPlayers[LevelManager.Ins.indexLevel].players[i].skin);
+            }
         }
 
-        for (int i = 0; i < nBot; i++)
+        for (int i = 0; i < Data.Ins.levelData.levelBots[LevelManager.Ins.indexLevel].bots.Count; i++)
         {
-            LevelManager.Ins.CreateBot();
+            for (int j = 0; j < Data.Ins.levelData.levelBots[LevelManager.Ins.indexLevel].bots[i].numberBot; j++)
+            {
+                LevelManager.Ins.CreateBot(i);
+            }
         }
     }
 

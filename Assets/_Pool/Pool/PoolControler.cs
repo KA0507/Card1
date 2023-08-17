@@ -145,52 +145,77 @@ public enum ParticleType
 
 public enum PoolType
 {
-    None,
+    None = 0,
 
-    Player,
-    Bot,
+    Player = 1,
+    Bot = 2,
 
-    Digit_Add1,
-    Digit_Add3,
-    Digit_Add5,
-    Digit_Add7,
-    Digit_Sub3,
-    Digit_Mul2,
-    Digit_Mul3,
-    Digit_Mul4,
-    Digit_Mul5,
-    Digit_Div2,
-    Digit_Div3,
+    Digit_Add1 = 10,
+    Digit_Add3 = 11,
+    Digit_Add5 = 12,
+    Digit_Add7 = 13,
+    Digit_Sub3 = 14,
+    Digit_Mul2 = 15,
+    Digit_Mul3 = 16,
+    Digit_Mul4 = 17,
+    Digit_Mul5 = 18,
+    Digit_Div2 = 19,
+    Digit_Div3 = 20,
 
-    Skin_Normal,
-    Skin_Chicken,
-    Skin_Dino,
-    Skin_Scorpion,
-    Skin_Spider,
-    Skin_Bear,
-    Skin_Wolf,
-    Skin_Mammouth,
-    Skin_Dragon,
-
-
-    Weapon_Sword,
-    Weapon_Bow,
-    Weapon_Gun,
-    Weapon_Hammer,
-
-    Power_Accessory,
-    Power_UpSize,
-    Power_Flash,
-    Power_UpHp,
-    Power_Water,
-
-    RangeCard = 90,
+    Skin_Normal_Player = 50,
+    Skin_Normal_Bot = 51,
+    Skin_Chicken = 52,
+    Skin_Dino = 53,
+    Skin_Scorpion = 54,
+    Skin_Spider = 55,
+    Skin_Bear = 56,
+    Skin_Wolf = 57,
+    Skin_Mammouth = 58,
+    Skin_Dragon = 59,
+    Skin_Bot_Bow = 60,
 
 
+    Weapon_Sword = 300,
+    Weapon_Bow = 301,
+    Weapon_Gun = 302,
+    Weapon_Hammer = 303,
 
-    ButtonCard = 95,
+    Power_Accessory = 350,
+    Power_UpSize = 351,
+    Power_Flash = 352,
+    Power_UpHp = 353,
+    Power_Water = 354,
 
-    TargetIndicator = 100
+    Support_Cannon = 400,
+    Support_Crossbow = 401,
+    Support_IronClamp = 402,
+    Support_Vines = 403,
+    Support_Bomb = 404,
+
+    Bullet_Cannon = 450,
+    Bullet_Crossbow = 451,
+    Bullet_Bow = 452,
+    Bullet_Gun = 453,
+
+    Spell_FireBall = 500,
+    Spell_UFO = 501,
+    Spell_Poison = 502,
+    Spell_ZoomOut = 503,
+    Spell_Balloon = 504,
+    Spell_Ally = 505,
+    Spell_Freeze = 506,
+    Spell_Sub50Percent = 507,
+
+
+
+    RangeCard = 900,
+
+
+
+    ButtonCard = 950,
+    ButtonCardInUICard = 960,
+
+    TargetIndicator = 1000
 }
 
 

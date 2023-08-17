@@ -9,5 +9,4 @@ public class Card : GameUnit
     public Sprite image;
     public int coin;
     public CardType cardType;
-    public float size;
 }

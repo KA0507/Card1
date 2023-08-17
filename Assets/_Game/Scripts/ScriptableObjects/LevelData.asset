@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21e76898a12bf7346997fc41c681c6cf, type: 3}
+  m_Name: LevelData
+  m_EditorClassIdentifier: 
+  levelBots:
+  - bots:
+    - numberBot: 4
+      hp: 90
+      damage: 15
+      skin: 51
+    - numberBot: 1
+      hp: 200
+      damage: 30
+      skin: 60
+  - bots:
+    - numberBot: 5
+      hp: 100
+      damage: 15
+      skin: 51
+    - numberBot: 1
+      hp: 1000
+      damage: 50
+      skin: 53
+  - bots:
+    - numberBot: 6
+      hp: 100
+      damage: 15
+      skin: 51
+  - bots:
+    - numberBot: 6
+      hp: 110
+      damage: 17
+      skin: 51
+  - bots:
+    - numberBot: 6
+      hp: 120
+      damage: 20
+      skin: 51
+  - bots:
+    - numberBot: 7
+      hp: 130
+      damage: 23
+      skin: 51
+  - bots:
+    - numberBot: 6
+      hp: 150
+      damage: 25
+      skin: 51
+  - bots:
+    - numberBot: 6
+      hp: 170
+      damage: 30
+      skin: 51
+  - bots:
+    - numberBot: 6
+      hp: 190
+      damage: 30
+      skin: 51
+  - bots:
+    - numberBot: 6
+      hp: 200
+      damage: 30
+      skin: 51
+  levelPlayers:
+  - players:
+    - numberPlayer: 1
+      skin: 50
+  - players:
+    - numberPlayer: 1
+      skin: 50
+  - players:
+    - numberPlayer: 1
+      skin: 50
+  - players:
+    - numberPlayer: 1
+      skin: 50
+  - players:
+    - numberPlayer: 2
+      skin: 50
+  - players:
+    - numberPlayer: 2
+      skin: 50
+  - players:
+    - numberPlayer: 2
+      skin: 50
+  - players:
+    - numberPlayer: 2
+      skin: 50
+  - players:
+    - numberPlayer: 3
+      skin: 50
+  - players:
+    - numberPlayer: 3
+      skin: 50

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UICard : UICanvas
 {
-    public List<ButtonCard> buttons;
+    public List<ButtonChangeCard> buttons;
 
     public RectTransform powerup;
     public RectTransform animal;
@@ -13,18 +13,76 @@ public class UICard : UICanvas
     public RectTransform support;
     public RectTransform digit;
 
-    public ButtonCard cardSelected;
+    public ButtonCardInUICard cardSelected;
+    public bool isClick;
+    public bool hasCard;
 
     private void Awake()
     {
-        int n = Data.Ins.cardData.digitCards.Count;
+        int n = Data.Ins.cardData.powerupCards.Count;
         for (int i = 0; i < n; i++)
         {
-            ButtonCard button = SimplePool.Spawn<ButtonCard>(PoolType.ButtonCard);
-            button.ChangeCard(Data.Ins.cardData.digitCards[i].cardType, Data.Ins.cardData.digitCards[i].poolType);
-            button.transform.SetParent(powerup);
-            button.btn.onClick.RemoveAllListeners();
-            button.btn.onClick.AddListener(() => button.ChooseCardReplace(this));
+            ButtonCardInUICard buttonCard = SimplePool.Spawn<ButtonCardInUICard>(PoolType.ButtonCardInUICard);
+            buttonCard.OnInit(this);
+            buttonCard.ChangeCard(Data.Ins.cardData.powerupCards[i].cardType, Data.Ins.cardData.powerupCards[i].poolType);
+            buttonCard.transform.SetParent(powerup);
+        }
+
+        n = Data.Ins.cardData.animalCards.Count;
+        for (int i = 0; i < n; i++)
+        {
+            ButtonCardInUICard buttonCard = SimplePool.Spawn<ButtonCardInUICard>(PoolType.ButtonCardInUICard);
+            buttonCard.OnInit(this);
+            buttonCard.ChangeCard(Data.Ins.cardData.animalCards[i].cardType, Data.Ins.cardData.animalCards[i].poolType);
+            buttonCard.transform.SetParent(animal);
+        }
+        
+        n = Data.Ins.cardData.weaponCards.Count;
+        for (int i = 0; i < n; i++)
+        {
+            ButtonCardInUICard buttonCard = SimplePool.Spawn<ButtonCardInUICard>(PoolType.ButtonCardInUICard);
+            buttonCard.OnInit(this);
+            buttonCard.ChangeCard(Data.Ins.cardData.weaponCards[i].cardType, Data.Ins.cardData.weaponCards[i].poolType);
+            buttonCard.transform.SetParent(weapon);
+        }
+
+        n = Data.Ins.cardData.digitCards.Count;
+        for (int i = 0; i < n; i++)
+        {
+            ButtonCardInUICard buttonCard = SimplePool.Spawn<ButtonCardInUICard>(PoolType.ButtonCardInUICard);
+            buttonCard.OnInit(this);
+            buttonCard.ChangeCard(Data.Ins.cardData.digitCards[i].cardType, Data.Ins.cardData.digitCards[i].poolType);
+            buttonCard.transform.SetParent(digit);
+        }
+        
+        n = Data.Ins.cardData.supportCards.Count;
+        for (int i = 0; i < n; i++)
+        {
+            ButtonCardInUICard buttonCard = SimplePool.Spawn<ButtonCardInUICard>(PoolType.ButtonCardInUICard);
+            buttonCard.OnInit(this);
+            buttonCard.ChangeCard(Data.Ins.cardData.supportCards[i].cardType, Data.Ins.cardData.supportCards[i].poolType);
+            buttonCard.transform.SetParent(support);
+        }
+        
+        n = Data.Ins.cardData.spellCards.Count;
+        for (int i = 0; i < n; i++)
+        {
+            ButtonCardInUICard buttonCard = SimplePool.Spawn<ButtonCardInUICard>(PoolType.ButtonCardInUICard);
+            buttonCard.OnInit(this);
+            buttonCard.ChangeCard(Data.Ins.cardData.spellCards[i].cardType, Data.Ins.cardData.spellCards[i].poolType);
+            buttonCard.transform.SetParent(spell);
+        }
+    }
+    private void Update()
+    {
+        if (isClick && !hasCard)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                //Debug.Log("mouse");
+                cardSelected = null;
+                isClick = false;
+            }
         }
     }
 
@@ -37,6 +95,11 @@ public class UICard : UICanvas
         }
     }
 
+    public void OpenUIMainMenu()
+    {
+        UIManager.Ins.CloseUI<UICard>();
+        UIManager.Ins.OpenUI<UIMainMenu>();
+    }
     public void SetCard()
     {
         for (int i = 0; i < buttons.Count; i++)
@@ -45,8 +108,10 @@ public class UICard : UICanvas
             UserData.Ins.SetEnumData<PoolType>(UserData.KEY_BUTTON_POOLTYPE + i, buttons[i].type);
         }
     }
-    public void ChooseTypeCard(ButtonCard card)
+    public void ChooseCard(ButtonCardInUICard buttonCard)
     {
-        cardSelected = card;
+        //Debug.Log("click");
+        isClick = true;
+        cardSelected = buttonCard;
     }
 }

@@ -133,10 +133,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6da7b1aaa47d2748bfb38e17bfa2f3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolType: 95
+  poolType: 950
   btn: {fileID: 2802683885960224099}
   rect: {fileID: 2802683885960224098}
   type: 0
   cardType: 0
   image: {fileID: 2802683885960224096}
-  data: {fileID: 11400000, guid: 10e14328109586b418f48dc3d30ffb26, type: 2}

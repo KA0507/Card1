@@ -3,33 +3,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using static UnityEngine.GraphicsBuffer;
 
 public class UIGamePlay : UICanvas
 {
+    public Text textLevel;
+    public Button buttonFighting;
     public RectTransform rectButtonCard;
-    public List<ButtonCard> buttonCards;
+    public List<ButtonCardInGamePlay> buttonCards;
     public Vector3[] positionButton;
     public Card currentCard;
     public RangeCard rangeCard;
     //public bool hasCard = false;
-    public ButtonCard currentButtonCard;
+    public ButtonCardInGamePlay currentButtonCard;
     public int indexCurrentButton;
     public LayerMask groundLayer;
     public List<Character> targets;
     public bool isChangeCard;
+    public bool isDrag;
+    public bool isClick;
 
     private void Awake()
     {
-        for (int i = 0; i < buttonCards.Count; i++)
+        /*for (int i = 0; i < buttonCards.Count; i++)
         {
             int currentIndex = i;
             buttonCards[currentIndex].btn.onClick.RemoveAllListeners();
             buttonCards[currentIndex].btn.onClick.AddListener(() => buttonCards[currentIndex].SelectCard(this, currentIndex));
-        }
+        }*/
+        
     }
     public void UseCard()
     {
+        textLevel.text = Constant.LEVEL + (LevelManager.Ins.indexLevel + 1);
         CardManager.Ins.uiGamePlay = this;
         for (int i = 0; i < buttonCards.Count; i++)
         {
@@ -39,29 +46,42 @@ public class UIGamePlay : UICanvas
             buttonCards[i].TF.localRotation = Quaternion.Euler(new Vector3(0, 0, positionButton[i].z));
             buttonCards[i].gameObject.SetActive(true);
         }
+        buttonFighting.gameObject.SetActive(true);
     }
     public void PlayGame()
     {
         GameManager.Ins.ChangeState(GameState.GAMEPLAY);
     }
 
+    public void Fighting()
+    {
+        for (int i = 0; i < buttonCards.Count; i++)
+        {
+            buttonCards[i].gameObject.SetActive(false);
+        }
+        buttonFighting.gameObject.SetActive(false);
+        Invoke("PlayGame", 1f);
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (currentCard != null/* && hasCard*/)
+        if (isClick)
         {
-            if (Input.GetMouseButtonDown(0))  // Kiểm tra xem đã bấm chuột trái hay chưa
+            if (rangeCard == null && currentCard != null && Input.GetMouseButtonDown(0))
             {
                 Vector3 mousePosition = Input.mousePosition;  // Lấy vị trí chuột trên màn hình
+
                 Ray ray = Camera.main.ScreenPointToRay(mousePosition);  // Tạo một tia từ vị trí chuột trên màn hình
-                if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, groundLayer))  // Kiểm tra xem tia va chạm với một đối tượng trong không gian 3D không
+
+                if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, LevelManager.Ins.groundLayer))  // Kiểm tra xem tia va chạm với một đối tượng trong không gian 3D không
                 {
                     Vector3 hitPosition = hit.point;  // Lấy vị trí va chạm trên không gian 3D của game
                     rangeCard = SimplePool.Spawn<RangeCard>(PoolType.RangeCard, new Vector3(hitPosition.x, 0.5f, hitPosition.z), Quaternion.Euler(0, 0, 0));
                     rangeCard.OnInit(this, currentCard.isPlayer, currentCard.isBot);
                 }
             }
-            if (Input.GetMouseButton(0))
+            if (rangeCard != null && Input.GetMouseButton(0))
             {
                 Vector3 mousePosition = Input.mousePosition;  // Lấy vị trí chuột trên màn hình
 
@@ -73,13 +93,12 @@ public class UIGamePlay : UICanvas
                     rangeCard.TF.position = new Vector3(hitPosition.x, 0.5f, hitPosition.z);
                 }
             }
+
             if (Input.GetMouseButtonUp(0))
             {
                 if (rangeCard != null)
                 {
-                    SimplePool.Despawn(rangeCard);
-                    rangeCard = null;
-                    if (targets.Count > 0)
+                    if (targets.Count > 0 || currentCard.cardType == CardType.Support)
                     {
                         CardManager.Ins.UseCard(targets, currentCard);
                         currentButtonCard.gameObject.SetActive(false);
@@ -88,23 +107,22 @@ public class UIGamePlay : UICanvas
                             Invoke("PlayGame", 1f);
                         }
                         currentCard = null;
-
                     }
                     else
                     {
-                        if (currentButtonCard != null && !isChangeCard)
+                        if (currentButtonCard != null)
                         {
                             currentButtonCard.rect.DOLocalMove(new Vector3(positionButton[indexCurrentButton].x, positionButton[indexCurrentButton].y, 0), 1f);
-                            //currentButtonCard.rect.localPosition = new Vector3(positionButton[indexCurrentButton].x, positionButton[indexCurrentButton].y, 0);
                             currentButtonCard.rect.DOLocalRotate(new Vector3(0, 0, positionButton[indexCurrentButton].z), 1f);
                             currentButtonCard = null;
                             currentCard = null;
 
                         }
                     }
-
-                    //hasCard = false;
+                    SimplePool.Despawn(rangeCard);
+                    rangeCard = null;
                 }
+                isClick = false;
             }
         }
     }
@@ -113,24 +131,11 @@ public class UIGamePlay : UICanvas
     {
         isChangeCard = false;
     }
-    public void SelectCard(ButtonCard buttonCard, int n)
+
+    public void SelectCard(ButtonCardInGamePlay buttonCard)
     {
-        if (currentButtonCard != null)
-        {
-            //currentButtonCard.rect.DOKill();
-            currentButtonCard.rect.DOLocalMove(new Vector3(positionButton[indexCurrentButton].x, positionButton[indexCurrentButton].y, 0), 1f);
-            //currentButtonCard.rect.localPosition = new Vector3(positionButton[indexCurrentButton].x, positionButton[indexCurrentButton].y, 0);
-            currentButtonCard.rect.DOLocalRotate(new Vector3(0, 0, positionButton[indexCurrentButton].z), 1f);
-        }
-        currentButtonCard = buttonCard;
-        indexCurrentButton = n;
-        buttonCard.rect.DOLocalMove(new Vector3(buttonCard.rect.localPosition.x, -300, buttonCard.rect.localPosition.z), 1f);
-        //buttonCard.rect.localPosition = new Vector3(buttonCard.rect.localPosition.x, -300, buttonCard.rect.localPosition.z);
-        buttonCard.rect.DOLocalRotate(Vector3.zero, 1f);
-        currentCard = (Card)Data.Ins.cardData.GetData(buttonCard.cardType, buttonCard.type);
-        //hasCard = true;
-        isChangeCard = true;
-        Invoke("ChangeCard", 0.001f);
+        buttonCard.rect.DOLocalMove(new Vector3(currentButtonCard.rect.localPosition.x, -300, currentButtonCard.rect.localPosition.z), 0.5f);
+        buttonCard.rect.DOLocalRotate(Vector3.zero, 0.5f);
     }
     public bool CheckGamePlay()
     {

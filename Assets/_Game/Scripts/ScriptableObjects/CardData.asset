@@ -23,4 +23,23 @@ MonoBehaviour:
   - {fileID: -722350525461960460, guid: 4a6ff012ad234d4488aadd509f206ed0, type: 3}
   - {fileID: -722350525461960460, guid: 59dfe3aa9dc1a8e4aace449afead69aa, type: 3}
   - {fileID: -722350525461960460, guid: dc396d686be55b842aea0d042a861a0b, type: 3}
-  animalCards: []
+  animalCards:
+  - {fileID: -3061916934492418380, guid: 202102c31993389428b9ca242d00055b, type: 3}
+  - {fileID: -3292735714123829948, guid: f587b10c3d2c73b40b3fa9cac818be7c, type: 3}
+  weaponCards:
+  - {fileID: -6313212461055544106, guid: 536c4548f0c2d3443a60b85a9f465f5d, type: 3}
+  - {fileID: -7634648909821514988, guid: 5945d6051c87c5544aea19ad72baa380, type: 3}
+  - {fileID: -8446380701395937049, guid: cfe05738280c2b34c855d992c4083f6d, type: 3}
+  - {fileID: 7234215424103940853, guid: 22e5a964e068e8a4bb53bb12a23be068, type: 3}
+  supportCards:
+  - {fileID: 1821522108346534663, guid: fd01b65232e5e1c41b5eb1caa5b899b8, type: 3}
+  powerupCards:
+  - {fileID: 785050975883716247, guid: fca2b2141b6cffc4eb7958046efea7b1, type: 3}
+  - {fileID: -4934734452508244538, guid: b9e17afff7343104cbb795a542b5d113, type: 3}
+  - {fileID: -6710923228470578053, guid: fad3855790ed14c4aa7d6896119053e6, type: 3}
+  - {fileID: 1499279214611945804, guid: b6f0ac47b6228f74a85e8e41c7d45cf7, type: 3}
+  - {fileID: 821790116907625222, guid: 3814e4a41f93d1e47987d76250cea288, type: 3}
+  spellCards:
+  - {fileID: 3036717200348290617, guid: faec9f85c3f1a55489090b8757ac4834, type: 3}
+  - {fileID: 5393469454799815946, guid: a961b5333e62970438e113682c647084, type: 3}
+  - {fileID: 1457928341147633043, guid: 08065065637528842aa551ead6c05c8d, type: 3}

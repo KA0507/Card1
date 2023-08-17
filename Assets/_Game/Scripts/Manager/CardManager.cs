@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class CardManager : Singleton<CardManager>
 {
@@ -9,31 +11,45 @@ public class CardManager : Singleton<CardManager>
     public void UsePowerupCard(List<Character> targets, Card card)
     {
         int n = targets.Count;
+        PowerupCard pc = card as PowerupCard;
 
         switch (card.poolType)
         {
             case PoolType.Power_Accessory:
                 for (int i = 0; i < targets.Count; i++)
                 {
-                    targets[i].ChangeSkin((SkinType)card.poolType);
+                    ParticlePool.Play(ParticleType.Level_up, targets[i].TF.position, Quaternion.identity);
+                    targets[i].upProperties(pc.hp, pc.damage);
+                    targets[i].currentSkin.ChanegeAccessory(targets[i]);
                 }
                 break;
             case PoolType.Power_UpSize:
                 for (int i = 0; i < targets.Count; i++)
                 {
-                    targets[i].ChangeSkin((SkinType)card.poolType);
+                    ParticlePool.Play(ParticleType.Level_up, targets[i].TF.position, Quaternion.identity);
+                    targets[i].upProperties(pc.hp, pc.damage);
+                    targets[i].upSize(1.5f);
                 }
                 break;
             case PoolType.Power_Flash:
                 for (int i = 0; i < targets.Count; i++)
                 {
-                    targets[i].ChangeSkin((SkinType)card.poolType);
+                    ParticlePool.Play(ParticleType.Level_up, targets[i].TF.position, Quaternion.identity);
+                    targets[i].upProperties(pc.hp, pc.damage);
                 }
                 break;
             case PoolType.Power_UpHp:
                 for (int i = 0; i < targets.Count; i++)
                 {
-                    targets[i].ChangeSkin((SkinType)card.poolType);
+                    ParticlePool.Play(ParticleType.Level_up, targets[i].TF.position, Quaternion.identity);
+                    targets[i].upProperties(pc.hp, pc.damage);
+                }
+                break;
+            case PoolType.Power_Water:
+                for (int i = 0; i < targets.Count; i++)
+                {
+                    ParticlePool.Play(ParticleType.Level_up, targets[i].TF.position, Quaternion.identity);
+                    targets[i].upProperties(pc.hp, pc.damage);
                 }
                 break;
         }
@@ -43,25 +59,68 @@ public class CardManager : Singleton<CardManager>
     {
         for (int i = 0; i < targets.Count; i++)
         {
+            ParticlePool.Play(ParticleType.Level_up, targets[i].TF.position, Quaternion.identity);
             targets[i].ChangeSkin((SkinType)card.poolType);
         }
     }
     
     public void UseSpellCard(List<Character> targets, Card card)
     {
-
+        int n = targets.Count;
+        switch(card.poolType)
+        {
+            case PoolType.Spell_FireBall:
+                break;
+            case PoolType.Spell_UFO:
+                break;
+            case PoolType.Spell_Poison:
+                for (int i = 0; i < n; i++)
+                {
+                    targets[i].Despawn();
+                    LevelManager.Ins.currentLevel.bots.Remove(targets[i]);
+                }
+                break;
+            case PoolType.Spell_ZoomOut:
+                for (int i = 0; i < n; i++)
+                {
+                    targets[i].TF.DOScale(targets[i].TF.localScale.x / 2, 0.5f);
+                    targets[i].hp /= 4;
+                    targets[i].targetIndicator.SetHp(targets[i].hp);
+                    targets[i].TF.DOMoveY(1f, 0.5f);
+                }
+                break;
+            case PoolType.Spell_Balloon:
+                break;
+            case PoolType.Spell_Ally:
+                break;
+            case PoolType.Spell_Freeze:
+                break;
+            case PoolType.Spell_Sub50Percent:
+                for (int i = 0; i < n; i++)
+                {
+                    targets[i].hp /= 2;
+                    targets[i].targetIndicator.SetHp(targets[i].hp);
+                }
+                break;
+        }
     }
     
     public void UseSupportCard(Card card)
     {
-        SimplePool.Spawn<Support>(card.poolType);
+        if (card.poolType == PoolType.Support_Cannon || card.poolType == PoolType.Support_Crossbow)
+        {
+            Support support = SimplePool.Spawn<Support>(card.poolType, new Vector3(uiGamePlay.rangeCard.TF.position.x, 1.5f, uiGamePlay.rangeCard.TF.position.z), Quaternion.identity);
+            support.OnInit();
+            LevelManager.Ins.currentLevel.players.Add(support);
+        }    
     }
     
     public void UseWeaponCard(List<Character> targets, Card card)
     {
         for (int i = 0; i < targets.Count; i++)
         {
-            targets[i].currentSkin.ChanegeWeapon((WeaponType)card.poolType);
+            ParticlePool.Play(ParticleType.Level_up, targets[i].TF.position, Quaternion.identity);
+            targets[i].ChangeWeapon((WeaponType)card.poolType);
         }
     }
     

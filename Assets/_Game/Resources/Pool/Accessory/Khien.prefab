@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3236998605464648763}
-  - component: {fileID: -927192777514100915}
+  - component: {fileID: 6729914223504153466}
   m_Layer: 0
   m_Name: Khien
   m_TagString: Untagged
@@ -27,13 +27,12 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0.104, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6280799550360968070}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-927192777514100915
+--- !u!114 &6729914223504153466
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,10 +41,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1925140184344645160}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92ae92a4c8bb47a48b84b1db0c52c23f, type: 3}
+  m_Script: {fileID: 11500000, guid: 4a788702da303c74caef94b0a2a32d73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolType: 38
+  poolType: 350
+  hp: 55
+  damage: 10
 --- !u!1 &2209634698221070675
 GameObject:
   m_ObjectHideFlags: 0
@@ -74,7 +75,6 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
-  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 3236998605464648763}
   m_RootOrder: 0
@@ -98,7 +98,6 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1

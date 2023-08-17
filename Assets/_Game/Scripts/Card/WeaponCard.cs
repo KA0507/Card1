@@ -5,6 +5,8 @@ using UnityEngine;
 public class WeaponCard : Card
 {
     public WeaponType weaponType;
+    public int hp;
+    public int damage;
 }
 
 public enum WeaponType

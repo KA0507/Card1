@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a478e08051a81604fbaced02636124ec, type: 3}
+  m_Name: PlayerData
+  m_EditorClassIdentifier: Assembly-CSharp::LevelPlayerData
+  playerLevels:
+  - coin: 0
+    hp: 80
+    damage: 15
+  - coin: 10
+    hp: 85
+    damage: 16
+  - coin: 20
+    hp: 90
+    damage: 17
+  - coin: 30
+    hp: 95
+    damage: 18
+  - coin: 40
+    hp: 100
+    damage: 19
+  - coin: 50
+    hp: 110
+    damage: 20
+  - coin: 60
+    hp: 120
+    damage: 22
+  - coin: 70
+    hp: 130
+    damage: 24
+  - coin: 80
+    hp: 140
+    damage: 26
+  - coin: 90
+    hp: 150
+    damage: 28
+  - coin: 100
+    hp: 160
+    damage: 30
+  - coin: 120
+    hp: 170
+    damage: 33
+  - coin: 140
+    hp: 180
+    damage: 36
+  - coin: 160
+    hp: 200
+    damage: 39
+  - coin: 180
+    hp: 220
+    damage: 42
+  - coin: 200
+    hp: 240
+    damage: 45
+  - coin: 230
+    hp: 270
+    damage: 48
+  - coin: 260
+    hp: 300
+    damage: 50
+  - coin: 290
+    hp: 330
+    damage: 53
+  - coin: 320
+    hp: 350
+    damage: 55
+  - coin: 350
+    hp: 375
+    damage: 58

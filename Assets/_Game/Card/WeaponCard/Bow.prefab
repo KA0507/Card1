@@ -43,11 +43,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646120311999edb41bb933941298fe2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolType: 24
+  poolType: 301
   isPlayer: 1
   isBot: 0
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: e949e31a829aafb49abe7aa6108ab521, type: 3}
   coin: 0
   cardType: 3
-  size: 0
-  weaponType: 24
+  weaponType: 301
+  hp: 0
+  damage: 0

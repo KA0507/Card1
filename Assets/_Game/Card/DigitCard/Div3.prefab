@@ -43,11 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0bda8301c865f84fba14799093d86e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolType: 13
+  poolType: 20
   isPlayer: 0
   isBot: 1
   image: {fileID: 21300000, guid: 2b57b2cecf5455645ae72889f430667c, type: 3}
   coin: 0
   cardType: 5
-  size: 0
-  numberCharacter: 0
+  maxCharacter: 0

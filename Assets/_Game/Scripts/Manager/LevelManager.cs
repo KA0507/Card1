@@ -87,7 +87,14 @@ public class LevelManager : Singleton<LevelManager>
     {
         Player player = SimplePool.Spawn<Player>(PoolType.Player, playerPosition.point, Quaternion.identity);
         player.OnInit();
-        player.currentSkin.renderer.material = LevelManager.Ins.materials[1];
+        player.TF.DOLocalMove(playerPosition.gridPositions[0], 1f);
+        playerPosition.gridPositions.RemoveAt(0);
+        currentLevel.players.Add(player);
+    }
+    public void CreatePlayer(SkinType skin)
+    {
+        Player player = SimplePool.Spawn<Player>(PoolType.Player, playerPosition.point, Quaternion.identity);
+        player.OnInit(skin);
         player.TF.DOLocalMove(playerPosition.gridPositions[0], 1f);
         playerPosition.gridPositions.RemoveAt(0);
         currentLevel.players.Add(player);
@@ -97,21 +104,21 @@ public class LevelManager : Singleton<LevelManager>
     {
         Player player = SimplePool.Spawn<Player>(PoolType.Player, playerPosition.point, Quaternion.identity);
         player.OnInit(character);
-        player.currentSkin.renderer.material = LevelManager.Ins.materials[1];
+        //player.currentSkin.renderer.material = LevelManager.Ins.materials[1];
         player.TF.DOLocalMove(playerPosition.gridPositions[0], 1f);
         playerPosition.gridPositions.RemoveAt(0);
         currentLevel.players.Add(player);
     }
 
-    public void CreateBot()
+    public void CreateBot(int n)
     {
         /*Ray ray = Camera.main.ScreenPointToRay(new Vector3(540, 1300, 0));
         Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, groundLayer);*/
         Bot bot = SimplePool.Spawn<Bot>(PoolType.Bot);
-        bot.OnInit();
+        bot.OnInit(n);
         bot.TF.localPosition = botPosition.gridPositions[0];
         botPosition.gridPositions.RemoveAt(0);
-        bot.currentSkin.renderer.material = LevelManager.Ins.materials[0];
+        //bot.currentSkin.renderer.material = LevelManager.Ins.materials[0];
         currentLevel.bots.Add(bot);
 
         //bot.TF.DOLocalMove(GridPosition.Ins.gridPositions[0], 1f);
